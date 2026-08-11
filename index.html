@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Quest System 0.2</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="hud">
+
+    <div class="scanline"></div>
+
+    <!-- ================= HEADER ================= -->
+
+    <header class="header">
+
+        <div class="system-name">
+            🔹 QUEST SYSTEM
+        </div>
+
+        <div class="online">
+            ● ONLINE
+        </div>
+
+    </header>
+
+
+    <!-- ================= HOME SCREEN ================= -->
+
+<section id="homeScreen" class="home-screen">
+
+    <div class="system-header">
+
+        <div class="system-title">
+            ◆ QUEST SYSTEM
+        </div>
+
+        <div class="system-status">
+            ● ONLINE
+        </div>
+
+    </div>
+
+
+    <div class="home-content">
+
+        <h1 class="home-title">
+            MISSION &amp; REWARDS
+        </h1>
+
+
+        <button
+            id="startBtn"
+            class="home-btn start-btn"
+        >
+            START SYSTEM
+        </button>
+
+
+        <button
+            id="accountBtn"
+            class="home-btn account-btn"
+        >
+            CREATE ACCOUNT
+        </button>
+
+
+        <div
+            id="accountWarning"
+            class="account-warning hidden"
+        >
+            <span>❗</span>
+            <span>Bikin Account dulu!</span>
+        </div>
+
+    </div>
+
+</section>
+
+
+    <!-- ================= ACCOUNT ================= -->
+
+    <section id="accountScreen" class="screen hidden">
+
+        <div class="panel">
+
+            <div class="panelTitle">
+                CREATE ACCOUNT
+            </div>
+
+            <input
+                id="nameInput"
+                type="text"
+                placeholder="Nama Pengguna"
+                maxlength="30"
+            >
+
+            <button id="createAccountBtn" class="neonBtn">
+                CREATE
+            </button>
+
+            <button id="backAccountBtn" class="backBtn">
+                ← BACK
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= MAIN CREATE QUEST ================= -->
+
+    <section id="mainScreen" class="screen hidden">
+
+        <div class="userStatus">
+
+            <div>
+                Nama:
+                <strong id="userName">Pengguna</strong>
+            </div>
+
+            <div>
+                Point:
+                <strong id="totalPoint">0</strong>
+            </div>
+
+        </div>
+
+        <h2>QUEST & REWARDS</h2>
+
+
+        <div class="panel">
+
+            <div class="panelTitle">
+                CREATE QUEST
+            </div>
+
+            <input
+                id="questInput"
+                type="text"
+                placeholder="ENTER QUEST"
+            >
+
+            <input
+                id="pointInput"
+                type="number"
+                min="0"
+                placeholder="NUMBER POINT"
+            >
+
+            <input
+                id="textRewardInput"
+                type="text"
+                placeholder="TEKS REWARDS"
+            >
+
+
+            <!-- PERFORMANCE -->
+
+            <label class="performanceToggle">
+
+                <input
+                    id="performanceToggle"
+                    type="checkbox"
+                >
+
+                <span>
+                    AKTIFKAN KINERJA
+                </span>
+
+            </label>
+
+
+            <div
+                id="performanceInputBox"
+                class="performanceInputBox hidden"
+            >
+
+                <input
+                    id="performanceTargetInput"
+                    type="number"
+                    min="1"
+                    placeholder="TARGET KINERJA"
+                >
+
+                <div class="inputHint">
+                    Contoh: 5 → checkbox harus dicentang 5 kali
+                </div>
+
+            </div>
+
+
+            <button id="saveQuestBtn" class="neonBtn">
+                💾 SAVE
+            </button>
+
+            <button id="backMainBtn" class="backBtn">
+                ← BACK
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= FOLDER ================= -->
+
+    <section id="folderScreen" class="screen hidden">
+
+        <div class="folderHeader">
+
+            <div>
+                📁
+                <strong id="folderName">
+                    Pengguna
+                </strong>
+            </div>
+
+            <div>
+                Point:
+                <strong id="folderPoint">
+                    0
+                </strong>
+            </div>
+
+        </div>
+
+
+        <div class="missionHeader">
+
+            <div>
+                <strong>MISSION</strong>
+            </div>
+
+            <div>
+                Kinerja:
+                <strong id="performance">
+                    0/0
+                </strong>
+            </div>
+
+        </div>
+
+
+        <div id="missionList"></div>
+
+
+        <!-- BOTTOM -->
+
+        <div class="bottomActions">
+
+            <button
+                id="deleteFolderBtn"
+                class="dangerBtn"
+            >
+                🗑️
+                <span>Hapus Folder</span>
+            </button>
+
+            <button
+                id="addQuestBtn"
+                class="addBtn"
+            >
+                ＋
+                <span>Tambah Quest</span>
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= QUEST MODAL ================= -->
+
+    <div
+        id="questModal"
+        class="modal hidden"
+    >
+
+        <div class="modalBox">
+
+            <div class="panelTitle">
+                CREATE QUEST
+            </div>
+
+
+            <input
+                id="modalQuestInput"
+                type="text"
+                placeholder="ENTER QUEST"
+            >
+
+            <input
+                id="modalPointInput"
+                type="number"
+                min="0"
+                placeholder="NUMBER POINT"
+            >
+
+            <input
+                id="modalTextRewardInput"
+                type="text"
+                placeholder="TEKS REWARDS"
+            >
+
+
+            <!-- PERFORMANCE MODAL -->
+
+            <label class="performanceToggle">
+
+                <input
+                    id="modalPerformanceToggle"
+                    type="checkbox"
+                >
+
+                <span>
+                    AKTIFKAN KINERJA
+                </span>
+
+            </label>
+
+
+            <div
+                id="modalPerformanceInputBox"
+                class="performanceInputBox hidden"
+            >
+
+                <input
+                    id="modalPerformanceTargetInput"
+                    type="number"
+                    min="1"
+                    placeholder="TARGET KINERJA"
+                >
+
+                <div class="inputHint">
+                    Contoh: 5 → checkbox harus dicentang 5 kali
+                </div>
+
+            </div>
+
+
+            <button
+                id="addToFolderBtn"
+                class="neonBtn"
+            >
+                ＋ TAMBAHKAN KE FOLDER
+            </button>
+
+            <button
+                id="closeModalBtn"
+                class="backBtn"
+            >
+                CANCEL
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- ================= NOTIFICATION ================= -->
+
+    <div
+        id="notification"
+        class="notification hidden"
+    >
+
+        <div id="notificationTitle"></div>
+
+        <div id="notificationPoint"></div>
+
+    </div>
+
+</div>
+
+
+<script src="script.js"></script>
+
+</body>
+</html>
